@@ -1,7 +1,6 @@
 //Adrian Dika Darmawan 2306250711
 //Andhika Fadhlan Wijanarko 2306267164
 //Jonathan Matius 2306161896
-//Calvin Kim 2306267095
 
 //Empire of Trade
 using System;
@@ -27,18 +26,18 @@ class Merchant
     public int Gold { get; set; }
     public int Xp { get; set; }
     public int Rep { get; set; }
-    public int Luck { get; set; }
-    public int Charm { get; set; }
+    public int Buys { get; set; }
+    public int Sells { get; set; }
     public Dictionary<string, int> Inventory { get; set; }
 
-    public Merchant(string name, int gold, int xp, int rep, int luck, int charm)
+    public Merchant(string name, int gold, int xp, int rep, int buys, int sells)
     {
         Name = name;
         Gold = gold;
         Xp = xp;
         Rep = rep;
-        Luck = luck;
-        Charm = charm;
+        Buys = buys;
+        Sells = sells;
 
         Inventory = new Dictionary<string, int>();
     }
@@ -56,6 +55,7 @@ class Merchant
 
             product.BuyPrice += quantity;
             Console.WriteLine($"{Name} bought {quantity} {product.Name}(s) for {cost} gold.");
+            Buys++;
             Xp++;
             Rep+=quantity;
         }
@@ -75,6 +75,7 @@ class Merchant
 
             product.SellPrice -= quantity;
             Console.WriteLine($"{Name} sold {quantity} {product.Name}(s) for {revenue} gold.");
+            Sells++;
             Xp++;
             Rep+=quantity;
         }
@@ -94,8 +95,8 @@ class Merchant
         Console.WriteLine($"Gold: {Gold}\n");
         Console.WriteLine($"XP: {Xp}\n");
         Console.WriteLine($"Reputation: {Rep}\n");
-        Console.WriteLine($"Luck: {Luck}\n");
-        Console.WriteLine($"Charm: {Charm}\n");
+        Console.WriteLine($"Buys: {Buys}\n");
+        Console.WriteLine($"Sells: {Sells}\n");
     }
 }
 
