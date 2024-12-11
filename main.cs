@@ -26,13 +26,20 @@ class Merchant
     public string Name { get; set; }
     public int Gold { get; set; }
     public int Xp { get; set; }
+    public int Rep { get; set; }
+    public int Luck { get; set; }
+    public int Charm { get; set; }
     public Dictionary<string, int> Inventory { get; set; }
 
-    public Merchant(string name, int gold, int xp)
+    public Merchant(string name, int gold, int xp, int rep, int luck, int charm)
     {
         Name = name;
         Gold = gold;
         Xp = xp;
+        Rep = rep;
+        Luck = luck;
+        Charm = charm;
+
         Inventory = new Dictionary<string, int>();
     }
 
@@ -50,6 +57,7 @@ class Merchant
             product.BuyPrice += quantity;
             Console.WriteLine($"{Name} bought {quantity} {product.Name}(s) for {cost} gold.");
             Xp++;
+            Rep+=quantity;
         }
         else
         {
@@ -68,6 +76,7 @@ class Merchant
             product.SellPrice -= quantity;
             Console.WriteLine($"{Name} sold {quantity} {product.Name}(s) for {revenue} gold.");
             Xp++;
+            Rep+=quantity;
         }
         else
         {
@@ -84,6 +93,9 @@ class Merchant
         }
         Console.WriteLine($"Gold: {Gold}\n");
         Console.WriteLine($"XP: {Xp}\n");
+        Console.WriteLine($"Reputation: {Rep}\n");
+        Console.WriteLine($"Luck: {Luck}\n");
+        Console.WriteLine($"Charm: {Charm}\n");
     }
 }
 
@@ -91,7 +103,7 @@ class Program
 {
     static void Main()
     {
-        Merchant player = new Merchant("Player", 100, 1);
+        Merchant player = new Merchant("Player", 100, 1, 0, 0, 0);
         List<Product> products = new List<Product>
         {
             new Product("Silk", 10, 15),
